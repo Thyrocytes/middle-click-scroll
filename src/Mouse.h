@@ -1,8 +1,6 @@
 #ifndef MCS_MOUSE_H
 #define MCS_MOUSE_H
 
-#include <Geode/utils/ZStringView.hpp>
-
 enum class MouseDirection : uint8_t {
 	DEFAULT = 0, ALL = 1, UP = 2,
 	DOWN = 3, LEFT = 4, RIGHT = 5
