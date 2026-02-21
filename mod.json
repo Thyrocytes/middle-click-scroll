@@ -8,7 +8,7 @@
 	},
 	"id": "viper.middleclickscroll",
 	"name": "Middle Click Scroll",
-	"version": "v1.0.1",
+	"version": "v1.0.2",
 	"links": {"source": "https://github.com/Cosmella-v/Middle-click-scroll"},
 	"developer": "Viper",
 	"resources": {"files": ["MacCursors/*.png"]},

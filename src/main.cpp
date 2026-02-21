@@ -37,6 +37,8 @@ struct MouseScrollClass : geode::Modify<Derived, Base> {
 
 		mouse.updateInputs();
 
+		geode::log::info("Left, right. and middle click! {} {}\nIs scrolling: {}", mouse.m_bLeftClick, mouse.m_bRightClick, mouse.m_bMiddleClick, this->m_fields->m_bScrolling);
+
 		if (mouse.m_bLeftClick || mouse.m_bRightClick) {
 			this->m_fields->m_bScrolling = false;
 			mouse.resetCursor();
