@@ -22,6 +22,7 @@ template <class Derived, class Base>
 struct MouseScrollClass : geode::Modify<Derived, Base> {
 	struct Fields {
 		bool m_bScrolling;
+		bool m_bMovement;
 		cocos2d::CCPoint m_pStartPoint;
 	};
 
@@ -41,14 +42,18 @@ struct MouseScrollClass : geode::Modify<Derived, Base> {
 			}
 		}
 		else {
-			this->m_fields->m_bScrolling = false;
-			mouse.resetCursor();
+			if (this->m_fields->m_bMovement) {
+				this->m_fields->m_bScrolling = false;
+				mouse.resetCursor();
+			}
 		}
 
 		if (this->m_fields->m_bScrolling) {
 			auto velocity = (this->m_fields->m_pStartPoint - startPoint) * mouse.m_dSpeedMult;
 			velocity.x = velocity.x < -mouse.m_dMaxSpeed ? -mouse.m_dMaxSpeed : velocity.x > mouse.m_dMaxSpeed ? mouse.m_dMaxSpeed : velocity.x;
 			velocity.y = velocity.y < -mouse.m_dMaxSpeed ? -mouse.m_dMaxSpeed : velocity.y > mouse.m_dMaxSpeed ? mouse.m_dMaxSpeed : velocity.y;
+
+			this->m_fields->m_bMovement = velocity.y != 0.f;
 
 			if (velocity.y != 0) {
 				if constexpr (requires { this->m_disableVertical; }) {
