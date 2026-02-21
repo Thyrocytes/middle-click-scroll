@@ -1,5 +1,4 @@
 #include <Geode/loader/Log.hpp>
-
 #include <Cocoa/Cocoa.h>
 
 #include "Mouse.h"
