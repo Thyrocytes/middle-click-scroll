@@ -25,7 +25,7 @@ struct MouseScrollClass : geode::Modify<Derived, Base> {
 		cocos2d::CCPoint m_pStartPoint;
 	};
 
-	void mscUpdate(float) noexcept {
+	void mscUpdate(float) {
 		if (!mouse.m_bWindowFocused) {
 			this->m_fields->m_bScrolling = false;
 			return;
