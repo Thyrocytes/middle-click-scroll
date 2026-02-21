@@ -1,4 +1,6 @@
 #include <Geode/utils/ZStringView.hpp>
+#include <Geode/loader/Log.hpp>
+
 #include <Cocoa/Cocoa.h>
 
 #include "Mouse.h"
@@ -8,7 +10,7 @@ void* Mouse::iDefaultCursor() {
 }
 
 void Mouse::iSetCursor(void* cursor) {
-	auto nsCursor = reinterpret_cast<NSCursor*>(nsCursor);
+	NSCursor* nsCursor = reinterpret_cast<NSCursor*>(nsCursor);
 	[nsCursor set];
 }
 
