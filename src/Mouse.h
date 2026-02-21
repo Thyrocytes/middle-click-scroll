@@ -24,7 +24,6 @@ struct Mouse final {
 	bool m_bLeftClick;
 	bool m_bRightClick;
 	bool m_bMiddleClick;
-	bool m_bWindowFocused;
 	MouseDirection m_eCurrentDir;
 private:
 #ifdef GEODE_IS_WINDOWS

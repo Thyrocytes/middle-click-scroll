@@ -7,7 +7,7 @@
 static Mouse& mouse = Mouse::get();
 
 #define settingUpdates(flag, name, type) flag = geode::Mod::get()->getSettingValue<type>(name); \
-	geode::listenForSettingChanges<type>(name, [](type newer) { \
+	geode::listenForSettingChanges<type>(name, [](type newer) noexcept { \
 		flag = newer; \
 	});
 
@@ -26,11 +26,6 @@ struct MouseScrollClass : geode::Modify<Derived, Base> {
 	};
 
 	void mscUpdate(float) {
-		if (!mouse.m_bWindowFocused) {
-			this->m_fields->m_bScrolling = false;
-			return;
-		}
-
 		if constexpr (requires { this->m_disableMovement; }) {
 			if (this->m_disableMovement) return;
 		}
@@ -43,12 +38,14 @@ struct MouseScrollClass : geode::Modify<Derived, Base> {
 		}
 
 		auto startPoint = geode::cocos::getMousePos();
-		if (mouse.m_bMiddleClick && !this->m_fields->m_bScrolling) {
-			if (!overlapping(startPoint)) return;
-			this->m_fields->m_bScrolling = true;
-			this->m_fields->m_pStartPoint = startPoint;
-		} 
-		else if (!mouse.m_bMiddleClick) {
+		if (mouse.m_bMiddleClick) {
+			if (!this->m_fields->m_bScrolling) {
+				if (!overlapping(startPoint)) return;
+				this->m_fields->m_bScrolling = true;
+				this->m_fields->m_pStartPoint = startPoint;
+			}
+		}
+		else {
 			this->m_fields->m_bScrolling = false;
 			mouse.resetCursor();
 		}
