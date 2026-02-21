@@ -19,14 +19,14 @@ void* Mouse::iLoadCursor(gd::string const& imagePath32, gd::string const& imageP
 	NSString* nsPath32 = [NSString stringWithUTF8String:imagePath32.c_str()];
 	NSImage* image32 = [[NSImage alloc] initWithContentsOfFile:nsPath32];
 	if (!image32 || ![image32 isValid]) {
-		geode::log::error("Failed to load 32x32 image at path: {}", image32);
+		geode::log::error("Failed to load 32x32 image at path: {}", imagePath32);
 		return nullptr;
 	}
 
 	NSString* nsPath64 = [NSString stringWithUTF8String:imagePath64.c_str()];
 	NSImage* image64 = [[NSImage alloc] initWithContentsOfFile:nsPath64];
 	if (!image64 || ![image64 isValid]) {
-		geode::log::error("Failed to load 64x64 image at path: {}", image64);
+		geode::log::error("Failed to load 64x64 image at path: {}", imagePath64);
 		return nullptr;
 	}
 
