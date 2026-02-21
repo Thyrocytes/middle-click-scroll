@@ -1,4 +1,3 @@
-#include <Geode/utils/ZStringView.hpp>
 #include <Geode/loader/Log.hpp>
 
 #include <Cocoa/Cocoa.h>
