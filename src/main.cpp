@@ -12,8 +12,8 @@ static Mouse& mouse = Mouse::get();
 	});
 
 $on_mod(Loaded) {
-	settingUpdates(mouse.m_dSpeedMult, "scroll-speed-mult", float);
-	settingUpdates(mouse.m_dMaxSpeed, "max-scroll-speed", float);
+	settingUpdates(mouse.m_dSpeedMult, "scroll-speed-mult", double);
+	settingUpdates(mouse.m_dMaxSpeed, "max-scroll-speed", double);
 }
 
 // implementation is mostly the same as previous version. could be improved

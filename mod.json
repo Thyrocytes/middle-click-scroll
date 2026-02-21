@@ -17,7 +17,7 @@
 		"scroll-speed-mult": {
 			"type": "float",
 			"name": "Scroll Speed Multiplier",
-			"description": "How much the speed is <cy>multiplied</c> by when the mouse is moved further from the <cl>initial point</c>. Formula: `(newMousePoint - initialPoint) * speedMult`",
+			"description": "How much the speed is <cy>multiplied</c> by when the mouse is moved further from the <cl>initial point</c>.\n\nFormula: `(newMousePoint - initialPoint) * speedMultiplier`",
 			"default": 0.1,
 			"min": 0.1,
 			"max": 5,
@@ -34,7 +34,7 @@
 		"max-scroll-speed": {
 			"type": "float",
 			"name": "Maximum Scroll Speed",
-			"description": "Sets the <cy>speed limit</c> for scrolling.",
+			"description": "Sets the <cy>maximum speed limit</c> for <cl>middle click scrolling</c>.",
 			"default": 50,
 			"min": 0.1,
 			"max": 300,

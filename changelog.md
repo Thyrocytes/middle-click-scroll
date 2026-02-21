@@ -1,5 +1,5 @@
 # v1.0.2
-- Refactored most of the mouse logic
+- Refactored most of the mouse logic (thanks <cr>Thyrocytes</c>)
 - Support for Geode v5.0.0 and Geometry Dash 2.2081
 
 # v1.0.1
