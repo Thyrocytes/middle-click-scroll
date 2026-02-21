@@ -1,0 +1,48 @@
+#include <Geode/utils/ZStringView.hpp>
+#include <Cocoa/Cocoa.h>
+
+#include "Mouse.h"
+
+void* iDefaultCursor() {
+	return reinterpret_cast<void*>([NSCursor arrowCursor]);
+}
+
+void iSetCursor(void* cursor) {
+	auto nsCursor = reinterpret_cast<NSCursor*>(nsCursor);
+	[nsCursor set];
+}
+
+void* iLoadCursor(geode::ZStringView imagePath32, geode::ZStringView imagePath64) {
+	// implementation unchanged from previous version
+	NSString* nsPath32 = [NSString stringWithUTF8String:imagePath32.c_str()];
+	NSImage* image32 = [[NSImage alloc] initWithContentsOfFile:nsPath32];
+	if (!image32 || ![image32 isValid]) {
+		geode::log::error("Failed to load 32x32 image at path: {}", image32);
+		return nullptr;
+	}
+
+	NSString* nsPath64 = [NSString stringWithUTF8String:imagePath64.c_str()];
+	NSImage* image64 = [[NSImage alloc] initWithContentsOfFile:nsPath64];
+	if (!image64 || ![image64 isValid]) {
+		geode::log::error("Failed to load 64x64 image at path: {}", image64);
+		return nullptr;
+	}
+
+	NSImage* combinedImage = [[NSImage alloc] initWithSize:image32.size];
+
+	for (NSImageRep* rep in [image32 representations]) {
+		[combinedImage addRepresentation:rep];
+	}
+
+	for (NSImageRep* rep in [image64 representations]) {
+		NSSize logicalSize = NSMakeSize(rep.pixelsWide / 2.0, rep.pixelsHigh / 2.0);
+		[rep setSize:logicalSize];
+		[combinedImage addRepresentation:rep];
+	}
+
+	NSSize size = combinedImage.size;
+	NSPoint hotSpot = NSMakePoint(size.width / 2.0, size.height / 2.0);
+
+	NSCursor* cursor = [[NSCursor alloc] initWithImage:combinedImage hotSpot:hotSpot];
+	return reinterpret_cast<void*>(cursor);
+}

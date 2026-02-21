@@ -1,0 +1,52 @@
+{
+	"geode": "5.0.0-beta.3",
+	"gd": {
+		"win": "2.2081",
+		"android": "2.2081",
+		"mac": "2.2081",
+		"ios": "2.2081"
+	},
+	"id": "viper.middleclickscroll",
+	"name": "Middle Click Scroll",
+	"version": "v1.0.1",
+	"links": {"source": "https://github.com/Cosmella-v/Middle-click-scroll"},
+	"developer": "Viper",
+	"resources": {"files": ["MacCursors/*.png"]},
+	"description": "Ever had a broken scroll wheel and liked how Chrome's middle click scroll worked?\nThen, this mod is for you!",
+	"settings": {
+		"scroll-speed-mult": {
+			"type": "float",
+			"name": "Scroll Speed Multiplier",
+			"description": "How much the speed is <cy>multiplied</c> by when the mouse is moved further from the <cl>initial point</c>. Formula: `(newMousePoint - initialPoint) * speedMult`",
+			"default": 0.1,
+			"min": 0.1,
+			"max": 5,
+			"controls": {
+				"arrows": true,
+				"arrow-step": 0.1,
+				"big-arrows": false,
+				"big-arrow-step": 0.5,
+				"slider": true,
+				"slider-step": 0.1,
+				"input": true
+			}
+		},
+		"max-scroll-speed": {
+			"type": "float",
+			"name": "Maximum Scroll Speed",
+			"description": "Sets the <cy>speed limit</c> for scrolling.",
+			"default": 50,
+			"min": 0.1,
+			"max": 300,
+			"controls": {
+				"arrows": true,
+				"arrow-step": 1,
+				"big-arrows": false,
+				"big-arrow-step": 2,
+				"slider": true,
+				"slider-step": 0.1,
+				"input": true
+			}
+		}
+	}
+}
