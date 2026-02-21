@@ -7,7 +7,7 @@
 static Mouse& mouse = Mouse::get();
 
 #define settingUpdates(flag, name, type) flag = geode::Mod::get()->getSettingValue<type>(name); \
-	geode::listenForSettingChanges<type>(name, [](type newer) { \
+	geode::listenForSettingChanges<type>(name, [](type newer) noexcept { \
 		flag = newer; \
 	});
 
