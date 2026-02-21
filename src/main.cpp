@@ -53,9 +53,9 @@ struct MouseScrollClass : geode::Modify<Derived, Base> {
 			velocity.x = velocity.x < -mouse.m_dMaxSpeed ? -mouse.m_dMaxSpeed : velocity.x > mouse.m_dMaxSpeed ? mouse.m_dMaxSpeed : velocity.x;
 			velocity.y = velocity.y < -mouse.m_dMaxSpeed ? -mouse.m_dMaxSpeed : velocity.y > mouse.m_dMaxSpeed ? mouse.m_dMaxSpeed : velocity.y;
 
-			this->m_fields->m_bMovement = velocity.y != 0.f;
+			this->m_fields->m_bMovement = velocity.y != 0;
 
-			if (velocity.y != 0) {
+			if (this->m_fields->m_bMovement) {
 				if constexpr (requires { this->m_disableVertical; }) {
 					if (this->m_disableVertical) {
 						mouse.setCursor(MouseDirection::ALL);
