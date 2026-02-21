@@ -46,14 +46,10 @@ void Mouse::resetCursor() noexcept {
 #endif
 }
 
-void Mouse::updateInputs() noexcept {
+bool Mouse::isMiddleClicking() noexcept {
 #ifdef GEODE_IS_WINDOWS
-	m_bMiddleClick = GetAsyncKeyState(VK_MBUTTON) & 0x8000;
-	m_bLeftClick = GetAsyncKeyState(VK_LBUTTON) & 0x8000;
-	m_bRightClick = GetAsyncKeyState(VK_RBUTTON) & 0x8000;
+	return GetAsyncKeyState(VK_MBUTTON) & 0x8000;
 #elif defined(GEODE_IS_MACOS)
-	m_bMiddleClick = CGEventSourceButtonState(kCGEventSourceStateHIDSystemState, kCGMouseButtonCenter);
-	m_bLeftClick = CGEventSourceButtonState(kCGEventSourceStateHIDSystemState, kCGMouseButtonLeft);
-	m_bRightClick = CGEventSourceButtonState(kCGEventSourceStateHIDSystemState, kCGMouseButtonRight);
+	return CGEventSourceButtonState(kCGEventSourceStateHIDSystemState, kCGMouseButtonCenter);
 #endif
 }

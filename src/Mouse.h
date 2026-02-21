@@ -16,14 +16,10 @@ struct Mouse final {
 	void setCursor(MouseDirection direction) noexcept;
 	void resetCursor() noexcept;
 
-	void updateInputs() noexcept;
+	bool isMiddleClicking() noexcept;
 
 	double m_dSpeedMult;
 	double m_dMaxSpeed;
-
-	bool m_bLeftClick;
-	bool m_bRightClick;
-	bool m_bMiddleClick;
 	MouseDirection m_eCurrentDir;
 private:
 #ifdef GEODE_IS_WINDOWS

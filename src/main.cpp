@@ -30,15 +30,10 @@ struct MouseScrollClass : geode::Modify<Derived, Base> {
 			if (this->m_disableMovement) return;
 		}
 
-		mouse.updateInputs();
-
-		if (mouse.m_bLeftClick || mouse.m_bRightClick) {
-			this->m_fields->m_bScrolling = false;
-			mouse.resetCursor();
-		}
+		bool middleClicking = mouse.isMiddleClicking();
 
 		auto startPoint = geode::cocos::getMousePos();
-		if (mouse.m_bMiddleClick) {
+		if (middleClicking) {
 			if (!this->m_fields->m_bScrolling) {
 				if (!overlapping(startPoint)) return;
 				this->m_fields->m_bScrolling = true;
