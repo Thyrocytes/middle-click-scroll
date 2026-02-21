@@ -17,7 +17,7 @@
 		"scroll-speed-mult": {
 			"type": "float",
 			"name": "Scroll Speed Multiplier",
-			"description": "How much the <cy>scroll speed</c> is <co>multiplied</c> by. <cy>Scroll speed</c> is <co>calculated</c> by `(initialPoint - newPoint) * [value of this setting]`.",
+			"description": "How much the <cy>scroll speed</c> is <co>multiplied</c> by. <cy>Scroll speed</c> is <co>calculated</c> by the distance between the <cl>initial click point</c> and your <cj>most recent mouse position</c> multiplied by the value of this setting.",
 			"default": 0.1,
 			"min": 0.1,
 			"max": 5,
