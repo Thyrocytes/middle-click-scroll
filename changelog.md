@@ -1,5 +1,5 @@
 # v1.0.2
-- Refactored the code a tad
+- Refactored most of the mouse logic
 - Support for Geode v5.0.0 and Geometry Dash 2.2081
 
 # v1.0.1

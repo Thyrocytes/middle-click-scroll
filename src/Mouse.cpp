@@ -6,7 +6,7 @@
 	#include <CoreGraphics/CGEventSource.h>
 #endif
 
-Mouse::Mouse() {
+Mouse::Mouse() noexcept {
 #ifdef GEODE_IS_WINDOWS
 	m_aMouseCache[0] = LoadCursor(NULL, IDC_ARROW);
 	m_aMouseCache[1] = LoadCursor(NULL, MAKEINTRESOURCE(32654));
@@ -25,12 +25,12 @@ Mouse::Mouse() {
 #endif
 }
 
-Mouse& Mouse::get() {
+Mouse& Mouse::get() noexcept {
 	static Mouse mouse;
 	return mouse;
 }
 
-void Mouse::setCursor(MouseDirection direction) {
+void Mouse::setCursor(MouseDirection direction) noexcept {
 #ifdef GEODE_IS_WINDOWS
 	SetCursor(m_aMouseCache[static_cast<int>(direction)]);
 #elif defined(GEODE_IS_MACOS)
@@ -38,7 +38,7 @@ void Mouse::setCursor(MouseDirection direction) {
 #endif
 }
 
-void Mouse::resetCursor() {
+void Mouse::resetCursor() noexcept {
 #ifdef GEODE_IS_WINDOWS
 	SetCursor(m_aMouseCache[0]);
 #elif defined(GEODE_IS_MACOS)
@@ -46,7 +46,7 @@ void Mouse::resetCursor() {
 #endif
 }
 
-void Mouse::updateInputs() {
+void Mouse::updateInputs() noexcept {
 #ifdef GEODE_IS_WINDOWS
 	m_bMiddleClick = GetAsyncKeyState(VK_MBUTTON) & 0x8000;
 	m_bLeftClick = GetAsyncKeyState(VK_LBUTTON) & 0x8000;

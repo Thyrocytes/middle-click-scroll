@@ -25,7 +25,7 @@ struct MouseScrollClass : geode::Modify<Derived, Base> {
 		cocos2d::CCPoint m_pStartPoint;
 	};
 
-	void mscUpdate(float) {
+	void mscUpdate(float) noexcept {
 		if (!mouse.m_bWindowFocused) {
 			this->m_fields->m_bScrolling = false;
 			return;
@@ -36,8 +36,6 @@ struct MouseScrollClass : geode::Modify<Derived, Base> {
 		}
 
 		mouse.updateInputs();
-
-		geode::log::info("Left, right. and middle click! {} {}\nIs scrolling: {}", mouse.m_bLeftClick, mouse.m_bRightClick, mouse.m_bMiddleClick, this->m_fields->m_bScrolling);
 
 		if (mouse.m_bLeftClick || mouse.m_bRightClick) {
 			this->m_fields->m_bScrolling = false;
@@ -50,7 +48,7 @@ struct MouseScrollClass : geode::Modify<Derived, Base> {
 			this->m_fields->m_bScrolling = true;
 			this->m_fields->m_pStartPoint = startPoint;
 		} 
-		else {
+		else if (!mouse.m_bMiddleClick) {
 			this->m_fields->m_bScrolling = false;
 			mouse.resetCursor();
 		}
@@ -86,11 +84,11 @@ struct MouseScrollClass : geode::Modify<Derived, Base> {
 		}
 	}
 
-	void registerWheel() {
+	void registerWheel() noexcept {
 		this->schedule(schedule_selector(Derived::mscUpdate));
 	}
 
-	bool overlapping(cocos2d::CCPoint const& point) {
+	bool overlapping(cocos2d::CCPoint const& point) noexcept {
 		auto target = this->getParent();
 		if (!target) target = this;
 		return this->boundingBox().containsPoint(target->convertToNodeSpace(point));
@@ -99,7 +97,7 @@ struct MouseScrollClass : geode::Modify<Derived, Base> {
 
 struct ScrollLayerMouseScroll final : MouseScrollClass<ScrollLayerMouseScroll, CCScrollLayerExt> {
     using MouseScrollClass::MouseScrollClass;
-	void registerWithTouchDispatcher() {
+	void registerWithTouchDispatcher() noexcept {
 		registerWheel();
 		CCScrollLayerExt::registerWithTouchDispatcher();
 	}
@@ -107,7 +105,7 @@ struct ScrollLayerMouseScroll final : MouseScrollClass<ScrollLayerMouseScroll, C
 
 struct TableViewMouseScroll final : MouseScrollClass<TableViewMouseScroll, TableView> {
 	using MouseScrollClass::MouseScrollClass;
-	void registerWithTouchDispatcher() {
+	void registerWithTouchDispatcher() noexcept {
 		if (m_unused2) {
 			registerWheel();
 		}

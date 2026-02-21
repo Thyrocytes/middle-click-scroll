@@ -9,14 +9,14 @@ enum class MouseDirection : uint8_t {
 };
 
 struct Mouse final {
-	Mouse();
+	Mouse() noexcept;
 
-	static Mouse& get();
+	static Mouse& get() noexcept;
 	
-	void setCursor(MouseDirection direction);
-	void resetCursor();
+	void setCursor(MouseDirection direction) noexcept;
+	void resetCursor() noexcept;
 
-	void updateInputs();
+	void updateInputs() noexcept;
 
 	double m_dSpeedMult;
 	double m_dMaxSpeed;
@@ -30,9 +30,9 @@ private:
 #ifdef GEODE_IS_WINDOWS
 	std::array<HCURSOR, 6> m_aMouseCache;
 #elif defined(GEODE_IS_MACOS)
-	void* iDefaultCursor();
-	void iSetCursor(void* cursor);
-	void* iLoadCursor(gd::string const& imagePath32, gd::string const& imagePath64);
+	void* iDefaultCursor() noexcept;
+	void iSetCursor(void* cursor) noexcept;
+	void* iLoadCursor(gd::string const& imagePath32, gd::string const& imagePath64) noexcept;
 	std::array<void*, 6> m_aMouseCache;
 #endif
 };
