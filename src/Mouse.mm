@@ -5,16 +5,16 @@
 
 #include "Mouse.h"
 
-void* Mouse::iDefaultCursor() {
+void* Mouse::iDefaultCursor() noexcept {
 	return reinterpret_cast<void*>([NSCursor arrowCursor]);
 }
 
-void Mouse::iSetCursor(void* cursor) {
+void Mouse::iSetCursor(void* cursor) noexcept {
 	NSCursor* nsCursor = reinterpret_cast<NSCursor*>(nsCursor);
 	[nsCursor set];
 }
 
-void* Mouse::iLoadCursor(gd::string const& imagePath32, gd::string const& imagePath64) {
+void* Mouse::iLoadCursor(gd::string const& imagePath32, gd::string const& imagePath64) noexcept {
 	// implementation unchanged from previous version
 	NSString* nsPath32 = [NSString stringWithUTF8String:imagePath32.c_str()];
 	NSImage* image32 = [[NSImage alloc] initWithContentsOfFile:nsPath32];
