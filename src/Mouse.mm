@@ -12,7 +12,7 @@ void Mouse::iSetCursor(void* cursor) {
 	[nsCursor set];
 }
 
-void* Mouse::iLoadCursor(geode::ZStringView imagePath32, geode::ZStringView imagePath64) {
+void* Mouse::iLoadCursor(gd::string const& imagePath32, gd::string const& imagePath64) {
 	// implementation unchanged from previous version
 	NSString* nsPath32 = [NSString stringWithUTF8String:imagePath32.c_str()];
 	NSImage* image32 = [[NSImage alloc] initWithContentsOfFile:nsPath32];

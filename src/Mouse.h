@@ -32,7 +32,7 @@ private:
 #elif defined(GEODE_IS_MACOS)
 	void* iDefaultCursor();
 	void iSetCursor(void* cursor);
-	void* iLoadCursor(geode::ZStringView imagePath32, geode::ZStringView imagePath64);
+	void* iLoadCursor(gd::string const& imagePath32, gd::string const& imagePath64);
 	std::array<void*, 6> m_aMouseCache;
 #endif
 };

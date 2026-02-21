@@ -12,7 +12,7 @@
 	"links": {"source": "https://github.com/Cosmella-v/Middle-click-scroll"},
 	"developer": "Viper",
 	"resources": {"files": ["MacCursors/*.png"]},
-	"description": "Ever had a broken scroll wheel and liked how Chrome's middle click scroll worked?\nThen, this mod is for you!",
+	"description": "Ever had a broken scrollwheel and liked how chrome's middle click scroll worked, then this mod is for you!",
 	"settings": {
 		"scroll-speed-mult": {
 			"type": "float",
