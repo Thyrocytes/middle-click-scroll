@@ -1,6 +1,8 @@
 #ifndef MCS_MOUSE_H
 #define MCS_MOUSE_H
 
+#include <Geode/utils/ZStringView.hpp>
+
 enum class MouseDirection : uint8_t {
 	DEFAULT = 0, ALL = 1, UP = 2,
 	DOWN = 3, LEFT = 4, RIGHT = 5
@@ -8,11 +10,6 @@ enum class MouseDirection : uint8_t {
 
 struct Mouse final {
 	Mouse();
-	
-	Mouse(Mouse const&) = delete;
-	Mouse& operator=(Mouse const&) = delete;
-	Mouse(Mouse&&) = delete;
-	Mouse& operator=(Mouse&&) = delete;
 
 	static Mouse& get();
 	
@@ -33,6 +30,9 @@ private:
 #ifdef GEODE_IS_WINDOWS
 	std::array<HCURSOR, 6> m_aMouseCache;
 #elif defined(GEODE_IS_MACOS)
+	void* iDefaultCursor();
+	void iSetCursor(void* cursor);
+	void* iLoadCursor(geode::ZStringView imagePath32, geode::ZStringView imagePath64);
 	std::array<void*, 6> m_aMouseCache;
 #endif
 };

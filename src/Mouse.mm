@@ -3,16 +3,16 @@
 
 #include "Mouse.h"
 
-void* iDefaultCursor() {
+void* Mouse::iDefaultCursor() {
 	return reinterpret_cast<void*>([NSCursor arrowCursor]);
 }
 
-void iSetCursor(void* cursor) {
+void Mouse::iSetCursor(void* cursor) {
 	auto nsCursor = reinterpret_cast<NSCursor*>(nsCursor);
 	[nsCursor set];
 }
 
-void* iLoadCursor(geode::ZStringView imagePath32, geode::ZStringView imagePath64) {
+void* Mouse::iLoadCursor(geode::ZStringView imagePath32, geode::ZStringView imagePath64) {
 	// implementation unchanged from previous version
 	NSString* nsPath32 = [NSString stringWithUTF8String:imagePath32.c_str()];
 	NSImage* image32 = [[NSImage alloc] initWithContentsOfFile:nsPath32];
